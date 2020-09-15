@@ -1,6 +1,6 @@
 package app.configuration;
 
-import app.model.Books;
+import app.model.Book;
 import app.model.Category;
 import app.model.Users;
 import app.repository.BooksRepository;
@@ -45,7 +45,15 @@ public class ProjectConfiguration {
      */
     private void genTestData() {
         // Генерация категорий
-        List<Category> categoryList = Arrays.asList(new Category("Фантастика"), new Category("Поэзия"), new Category("Приключения"), new Category("Наука"));
+        List<Category> categoryList = Arrays.asList(new Category("Фантастика"), 
+                new Category("Поэзия"), 
+                new Category("Приключения"), 
+                new Category("Наука"),
+                new Category("Спорт"),
+                new Category("Советская проза"),
+                new Category("Фентази"),
+                new Category("Анимэ"),
+                new Category("Зарубежная проза"));
         Category category = new Category("Afynfcnbrf");
         category.setName("test");
         categoryRepository.saveAll(categoryList);
@@ -53,10 +61,10 @@ public class ProjectConfiguration {
         List<Users> userList = Arrays.asList(new Users("admin", "Администратор", "123"), new Users("user_1", "Иванов Иван", "123"), new Users("user_2", "Петров Петр", "123"));
         userRepository.saveAll(userList);
         // Генерация книг
-        List<Books> booksList = Arrays.asList(new Books("День триффидов", "978-5-17-095526-8", null, 1L), 
-                new Books("Цена бессмертия. Наша старая добрая фантастика", "978-5-389-12663-3", null, 1L),
-                new Books("Halo. Потоп", "978-5-389-17962-2", null, 1L),
-                new Books("История будущего. Книга 2. Пасынки Вселенной", "978-5-389-16880-0", null, 1L));
+        List<Book> booksList = Arrays.asList(new Book("День триффидов", "978-5-17-095526-8", null, 1L), 
+                new Book("Цена бессмертия. Наша старая добрая фантастика", "978-5-389-12663-3", null, 1L),
+                new Book("Halo. Потоп", "978-5-389-17962-2", null, 1L),
+                new Book("История будущего. Книга 2. Пасынки Вселенной", "978-5-389-16880-0", null, 1L));
         booksRepository.saveAll(booksList);
 
     }

@@ -1,6 +1,7 @@
 package app.service;
 
-import app.model.Books;
+import app.exception.BookNotFoundException;
+import app.model.Book;
 import app.repository.BooksRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +18,17 @@ public class BookService {
     @Autowired
     BooksRepository bookRepository;
 
-    public List<Books> getBooks() {
-        List<Books> result = new ArrayList<>();
+    public List<Book> getBooks() {
+        List<Book> result = new ArrayList<>();
         bookRepository.findAll().iterator().forEachRemaining((t) -> {
             result.add(t);
         });
 
         return result;
+    }
+
+    public byte[] getBooksImage(Long bookId) {
+        Book book = bookRepository.findById(bookId).orElseThrow(() -> new BookNotFoundException());
+        return book.getCoverImage();
     }
 }

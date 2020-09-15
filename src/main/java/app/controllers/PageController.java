@@ -1,5 +1,6 @@
 package app.controllers;
 
+import app.service.BookService;
 import app.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class PageController {
     @Autowired
     CategoryService categoryService;
 
+    @Autowired
+    BookService bookService;
+
     /**
      *
      * @param model
@@ -28,6 +32,7 @@ public class PageController {
         log.info(PagesType.INDEX_PAGE.toString());
         model.addAttribute("title", "Библиотека");
         model.addAttribute("categoryList", categoryService.getCategory());
+        model.addAttribute("bookList", bookService.getBooks());
         return PagesType.INDEX_PAGE.toString();
     }
 

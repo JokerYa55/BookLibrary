@@ -19,7 +19,7 @@ public class CategoryService {
 
     public List<Category> getCategory() {
         List<Category> result = new ArrayList<>();
-        categoryRepository.findAll().iterator().forEachRemaining((t) -> {
+        categoryRepository.findAllByOrderByName().iterator().forEachRemaining((t) -> {
             result.add(t);
         });
         return result;

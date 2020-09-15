@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Table(name = "t_books")
 @NoArgsConstructor
-public class Books {
+public class Book {
 
     @Id
     @Column(name = "id", unique = true, nullable = false)
@@ -35,7 +35,7 @@ public class Books {
     @Column(name = "category_id")
     Long categoryId;
 
-    public Books(String name, String isdn, byte[] coverImage, Long categoryId) {
+    public Book(String name, String isdn, byte[] coverImage, Long categoryId) {
         this.name = name;
         this.isdn = isdn;
         this.coverImage = coverImage;

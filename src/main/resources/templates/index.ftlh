@@ -29,8 +29,14 @@
                         </div>
                     </#list>
                 </div>
-                <div>
-                    BOOK
+                <div id = "book_list">
+                    <#list bookList as book>
+                        <div class="book_item">
+                            <img src="/api/book/${book.id}/img">
+                            <p>${book.name}</p>
+                            <p>${book.id}</p>
+                        </div>
+                    </#list>
                 </div>
             </div>
             <div id = "footer">
