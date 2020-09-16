@@ -24,7 +24,7 @@ public class BookService {
      */
     public List<Book> getBooks() {
         List<Book> result = new ArrayList<>();
-        bookRepository.findAll().iterator().forEachRemaining((t) -> {
+        bookRepository.findAllByOrderByName().iterator().forEachRemaining((t) -> {
             result.add(t);
         });
         return result;

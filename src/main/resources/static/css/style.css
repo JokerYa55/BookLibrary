@@ -12,6 +12,7 @@
 #category{
     display: flex;
     flex-direction: column;
+    width: 20%;
 }
 
 .category_item{
