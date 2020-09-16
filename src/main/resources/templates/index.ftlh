@@ -36,13 +36,23 @@
                                 <img src="/api/book/${book.id}/img">
                             </div>
                             <div class = "book_properties">
-                                <p>${book.name}</p>
-                                <p>ISBN : ${book.isdn}</p>
-                                <#if book.author??>
-                                    <p>${book.author.name}</p>
-                                </#if>
-                                <p>Скачиваний : ${book.bookLoad}</p>
-                                <p>Просмотров : ${book.bookShow}</p>
+                                <div class = "book_property_name">
+                                    ${book.name}
+                                </div>        
+                                <div class = "book_property_isbn">
+                                    ISBN : ${book.isdn}
+                                </div>
+                                <div class = "book_property_author">
+                                    <#if book.author??>
+                                        ${book.author.name}
+                                    </#if>
+                                </div>
+                                <div class = "book_property_statistic">
+                                    Скачиваний : ${book.bookLoad}
+                                </div>    
+                                <div class = "book_property_statistic">
+                                    Просмотров : ${book.bookShow}
+                                </div>    
                                 <a href = "/api/book/${book.id}/load">Скачать</a>
                                 <input type = "hidden" name = "book_id" value = ${book.id}/>    
                             </div>

@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,16 +32,30 @@ public class RestApiController {
     @Autowired
     CategoryService categoryService;
 
+    /**
+     *
+     * @return
+     */
     @GetMapping(path = "/test")
     public String test() {
         return "test";
     }
 
+    /**
+     *
+     * @return
+     */
     @GetMapping(path = "/book")
     public List<Book> getBook() {
         return bookService.getBooks();
     }
 
+    /**
+     *
+     * @param response
+     * @param bookId
+     * @throws IOException
+     */
     @GetMapping(path = "/book/{id}/img")
     public void getBookImage(HttpServletResponse response, @PathVariable(name = "id") Long bookId) throws IOException {
         response.setContentType("image/jpeg");
@@ -47,6 +65,25 @@ public class RestApiController {
 
     }
 
+    @GetMapping(path = "/book/{id}/load")
+    public ResponseEntity<InputStreamResource> loadBookFile(HttpServletResponse response, @PathVariable(name = "id") Long bookId) throws IOException {
+        response.setContentType("image/jpeg");
+        byte[] buffer = bookService.getBooksImage(bookId);
+        InputStreamResource resource = new InputStreamResource(new ByteArrayInputStream(buffer));
+        return ResponseEntity.ok()
+                // Content-Disposition
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=test")
+                // Content-Type
+                .contentType(MediaType.APPLICATION_PDF)
+                // Contet-Length
+                .contentLength(buffer.length) //
+                .body(resource);
+    }
+
+    /**
+     *
+     * @return
+     */
     @GetMapping(path = "/category")
     public List<Category> getCategory() {
         return categoryService.getCategory();

@@ -41,6 +41,11 @@
 
 .book_properties{
     padding-left: 10px;
+    padding-top: 10px;
+}
+
+.book_property_name{
+    padding-bottom: 5px;
 }
 
 img {
