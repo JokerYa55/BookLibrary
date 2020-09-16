@@ -7,7 +7,6 @@ import app.repository.BooksRepository;
 import app.repository.CategoryRepository;
 import app.repository.UserRepository;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
