@@ -1,8 +1,10 @@
 package app.configuration;
 
+import app.model.Author;
 import app.model.Book;
 import app.model.Category;
 import app.model.Users;
+import app.repository.AuthorRepository;
 import app.repository.BooksRepository;
 import app.repository.CategoryRepository;
 import app.repository.UserRepository;
@@ -36,6 +38,9 @@ public class ProjectConfiguration {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    AuthorRepository authorRepository;
+
     /**
      *
      */
@@ -56,6 +61,16 @@ public class ProjectConfiguration {
             images.add(image);
         }
 
+        // Генерация авторов
+        List<Author> authorList = Arrays.asList(new Author(null, "Гарри Гаррисон"),
+                new Author(null, "Уильям Дитц"),
+                new Author(null, "Уиндем Джон"),
+                new Author(null, "Роберт Хайнлайн"),
+                new Author(null, "Аластер Рейнольдс"),
+                new Author(null, "Глен Кук"));
+
+        authorRepository.saveAll(authorList);
+
         // Генерация категорий
         List<Category> categoryList = Arrays.asList(new Category("Фантастика"),
                 new Category("Поэзия"),
@@ -73,16 +88,16 @@ public class ProjectConfiguration {
         List<Users> userList = Arrays.asList(new Users("admin", "Администратор", "123"), new Users("user_1", "Иванов Иван", "123"), new Users("user_2", "Петров Петр", "123"));
         userRepository.saveAll(userList);
         // Генерация книг
-        List<Book> booksList = Arrays.asList(new Book("День триффидов", "978-5-17-095526-8", images.get(0), 1L),
-                new Book("Цена бессмертия. Наша старая добрая фантастика", "978-5-389-12663-3", images.get(1), 1L),
-                new Book("Halo. Потоп", "978-5-389-17962-2", images.get(2), 1L),
-                new Book("История будущего. Книга 2. Пасынки Вселенной", "978-5-389-16880-0", images.get(3), 1L),
-                new Book("Расширенная Вселенная", "978-5-389-15852-8", images.get(4), 1L),
-                new Book("Хроники Черного Отряда. Портал Теней", "978-5-389-17122-0", images.get(5), 1L),
-                new Book("Карп и дракон. Книга 2. Рассказы ночной стражи", "978-5-389-18316-2", images.get(6), 1L),
-                new Book("Фантастическая сага", "978-5-389-18245-5", images.get(7), 1L),
-                new Book("Мстительница", "978-5-389-16902-9", images.get(8), 1L),
-                new Book("Медленные пули", "978-5-389-17159-6", images.get(9), 1L));
+        List<Book> booksList = Arrays.asList(new Book("День триффидов", "978-5-17-095526-8", images.get(0), 1L, authorList.get(2)),
+                new Book("Цена бессмертия. Наша старая добрая фантастика", "978-5-389-12663-3", images.get(1), 1L, null),
+                new Book("Halo. Потоп", "978-5-389-17962-2", images.get(2), 1L, authorList.get(1)),
+                new Book("История будущего. Книга 2. Пасынки Вселенной", "978-5-389-16880-0", images.get(3), 1L, authorList.get(3)),
+                new Book("Расширенная Вселенная", "978-5-389-15852-8", images.get(4), 1L, authorList.get(3)),
+                new Book("Хроники Черного Отряда. Портал Теней", "978-5-389-17122-0", images.get(5), 1L, authorList.get(5)),
+                new Book("Карп и дракон. Книга 2. Рассказы ночной стражи", "978-5-389-18316-2", images.get(6), 1L, null),
+                new Book("Фантастическая сага", "978-5-389-18245-5", images.get(7), 1L, authorList.get(0)),
+                new Book("Мстительница", "978-5-389-16902-9", images.get(8), 1L, authorList.get(4)),
+                new Book("Медленные пули", "978-5-389-17159-6", images.get(9), 1L, authorList.get(4)));
         booksRepository.saveAll(booksList);
 
     }

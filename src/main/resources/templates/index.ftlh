@@ -37,7 +37,13 @@
                             </div>
                             <div class = "book_properties">
                                 <p>${book.name}</p>
-                                <p>${book.isdn}</p>
+                                <p>ISBN : ${book.isdn}</p>
+                                <#if book.author??>
+                                    <p>${book.author.name}</p>
+                                </#if>
+                                <p>Скачиваний : ${book.bookLoad}</p>
+                                <p>Просмотров : ${book.bookShow}</p>
+                                <a href = "/api/book/${book.id}/load">Скачать</a>
                                 <input type = "hidden" name = "book_id" value = ${book.id}/>    
                             </div>
                         </div>

@@ -28,8 +28,8 @@
 }
 
 .book_item{    
-    width: 250px;
-    height: 280px;
+    width: 350px;
+    height: 300px;
     padding: 10px 10px 10px 10px;
     display: flex;
     flex-direction: row;
@@ -44,8 +44,8 @@
 }
 
 img {
-    width: 120px;
-    height: 180px;
+    width: 150px;
+    height: 200px;
 }
 
 #header{
