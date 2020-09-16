@@ -37,7 +37,8 @@
                             </div>
                             <div class = "book_properties">
                                 <p>${book.name}</p>
-                                <p>${book.id}</p>
+                                <p>${book.isdn}</p>
+                                <input type = "hidden" name = "book_id" value = ${book.id}/>    
                             </div>
                         </div>
                     </#list>
