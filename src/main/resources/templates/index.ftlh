@@ -25,7 +25,7 @@
                 <div id = "category">
                     <#list categoryList as item>
                         <div class="category_item">
-                            ${item.name}
+                            <a href = "/index/${item.id}">${item.name}</a>
                         </div>
                     </#list>
                 </div>

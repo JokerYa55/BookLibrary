@@ -18,17 +18,38 @@ public class BookService {
     @Autowired
     BooksRepository bookRepository;
 
+    /**
+     *
+     * @return
+     */
     public List<Book> getBooks() {
         List<Book> result = new ArrayList<>();
         bookRepository.findAll().iterator().forEachRemaining((t) -> {
             result.add(t);
         });
-
         return result;
     }
 
+    /**
+     *
+     * @param bookId
+     * @return
+     */
     public byte[] getBooksImage(Long bookId) {
         Book book = bookRepository.findById(bookId).orElseThrow(() -> new BookNotFoundException());
         return book.getCoverImage();
+    }
+
+    /**
+     *
+     * @param categoryId
+     * @return
+     */
+    public Object getBooksByCategory(Long categoryId) {
+        List<Book> result = new ArrayList<>();
+        bookRepository.findByCategoryIdOrderByName(categoryId).iterator().forEachRemaining((t) -> {
+            result.add(t);
+        });
+        return result;
     }
 }

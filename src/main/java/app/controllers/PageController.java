@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -33,6 +34,15 @@ public class PageController {
         model.addAttribute("title", "Библиотека");
         model.addAttribute("categoryList", categoryService.getCategory());
         model.addAttribute("bookList", bookService.getBooks());
+        return PagesType.INDEX_PAGE.toString();
+    }
+
+    @GetMapping(path = "/index/{category_id}", produces = "text/html")
+    public String pageCategory(Model model, @PathVariable(name = "category_id") Long categoryId) {
+        log.info(PagesType.INDEX_PAGE.toString());
+        model.addAttribute("title", "Библиотека");
+        model.addAttribute("categoryList", categoryService.getCategory());
+        model.addAttribute("bookList", bookService.getBooksByCategory(categoryId));
         return PagesType.INDEX_PAGE.toString();
     }
 
