@@ -37,6 +37,12 @@ public class PageController {
         return PagesType.INDEX_PAGE.toString();
     }
 
+    /**
+     * 
+     * @param model
+     * @param categoryId
+     * @return 
+     */
     @GetMapping(path = "/index/{category_id}", produces = "text/html")
     public String pageCategory(Model model, @PathVariable(name = "category_id") Long categoryId) {
         log.info(PagesType.INDEX_PAGE.toString());
