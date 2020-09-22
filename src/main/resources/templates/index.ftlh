@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div id = "footer">
-                footer
+                Количество книг : ${bookList?size}
             </div>
         </div>    
     </body>

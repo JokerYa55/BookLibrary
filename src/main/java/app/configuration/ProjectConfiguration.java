@@ -55,7 +55,7 @@ public class ProjectConfiguration {
      */
     private void genTestData() throws FileNotFoundException, IOException {
         List<byte[]> images = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 19; i++) {
             File file = new File(getClass().getResource("/static/img/" + (i + 1) + ".jpg").getFile());
             byte[] image = Files.readAllBytes(file.toPath());
             images.add(image);
@@ -67,7 +67,17 @@ public class ProjectConfiguration {
                 new Author(null, "Уиндем Джон"),
                 new Author(null, "Роберт Хайнлайн"),
                 new Author(null, "Аластер Рейнольдс"),
-                new Author(null, "Глен Кук"));
+                new Author(null, "Глен Кук"),
+                new Author(null, "Ли Бардуго"),
+                new Author(null, "Роберт Джордан"),
+                new Author(null, "Анджей Сапковский"),
+                new Author(null, "Филип Пулман"),
+                new Author(null, "Симона Сент-Джеймс"),
+                new Author(null, "Вячеслав Прах"),
+                new Author(null, "Елена Ярышевская"),
+                new Author(null, "Джейсон Вумек"),
+                new Author(null, "Филипп Оклер")
+        );
 
         authorRepository.saveAll(authorList);
 
@@ -97,7 +107,16 @@ public class ProjectConfiguration {
                 new Book("Карп и дракон. Книга 2. Рассказы ночной стражи", "978-5-389-18316-2", images.get(6), 1L, null),
                 new Book("Фантастическая сага", "978-5-389-18245-5", images.get(7), 1L, authorList.get(0)),
                 new Book("Мстительница", "978-5-389-16902-9", images.get(8), 1L, authorList.get(4)),
-                new Book("Медленные пули", "978-5-389-17159-6", images.get(9), 1L, authorList.get(4)));
+                new Book("Медленные пули", "978-5-389-17159-6", images.get(9), 1L, authorList.get(4)),
+                new Book("Чудо-Женщина. Вестница войны", "978-5-17-105902-6", images.get(10), 8L, authorList.get(6)),
+                new Book("Колесо Времени. Книга 1. Око Мира", "978-5-389-17371-2", images.get(11), 3L, authorList.get(7)),
+                new Book("Последнее желание. Меч предназначения", "978-5-17-118208-3", images.get(12), 7L, authorList.get(8)),
+                new Book("Северное сияние", "978-5-17-120761-8", images.get(13), 7L, authorList.get(9)),
+                new Book("Сломанные девочки", "978-5-00131-160-7", images.get(14), 9L, authorList.get(10)),
+                new Book("Слова, которые нам не говорили родители", "978-5-17-121109-7", images.get(15), 6L, authorList.get(11)),
+                new Book("Вышел пудель погулять", "978-5-17-121109-7", images.get(16), 2L, authorList.get(12)),
+                new Book("Поднимая планку. Как работать эффективнее, мыслить масштабнее и успевать больше", "978-5-91657-962-8", images.get(17), 4L, authorList.get(13)),
+                new Book("Тьерри Анри: одинокий на вершине", "978-5-04-088808-5", images.get(18), 5L, authorList.get(14)));
         booksRepository.saveAll(booksList);
 
     }
