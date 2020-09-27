@@ -53,8 +53,15 @@
                                 <div class = "book_property_statistic">
                                     Просмотров : ${book.bookShow}
                                 </div>    
-                                <a href = "/api/book/${book.id}/load">Скачать</a>
-                                <input type = "hidden" name = "book_id" value = ${book.id}/>    
+                                <div>
+                                    <a href = "/api/book/${book.id}/load">Скачать</a>
+                                </div>
+                                <div>
+                                    <button onclick="alert(${book.id})">
+                                        Добавить в корзину
+                                    </button>
+                                    <input type = "hidden" name = "book_id" value = ${book.id}/>    
+                                </div>
                             </div>
                         </div>
                     </#list>
