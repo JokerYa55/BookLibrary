@@ -1,7 +1,10 @@
 package app.controllers;
 
+import app.bean.AddTrashResult;
 import app.model.Book;
 import app.model.Category;
+import app.model.Trash;
+import app.repository.TrashRepository;
 import app.service.BookService;
 import app.service.CategoryService;
 import java.io.ByteArrayInputStream;
@@ -18,6 +21,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +35,9 @@ public class RestApiController {
 
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    TrashRepository trashRepository;
 
     /**
      *
@@ -87,5 +94,15 @@ public class RestApiController {
     @GetMapping(path = "/category")
     public List<Category> getCategory() {
         return categoryService.getCategory();
+    }
+
+    /**
+     *
+     * @param bookId
+     * @return
+     */
+    @PostMapping(path = "/addTrash")
+    public AddTrashResult addTrash(Long bookId) {
+        return new AddTrashResult(trashRepository.save(new Trash(bookId, bookId)).getId());
     }
 }
