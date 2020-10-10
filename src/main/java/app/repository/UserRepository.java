@@ -1,12 +1,14 @@
 package app.repository;
 
-import app.model.Users;
+import app.model.User;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author vasil
  */
-public interface UserRepository extends CrudRepository<Users, Long> {
-
+@Repository
+public interface UserRepository extends CrudRepository<User, Long> {
+    User findByUsername(String username);
 }

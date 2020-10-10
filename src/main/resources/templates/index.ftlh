@@ -18,8 +18,7 @@
             <strong>We're sorry but lk doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
         </noscript>
         <div id = "container">
-            <div id = "header">
-                header
+            <div id = "header">                 
             </div>
             <div id = "main">            
                 <div id = "category">

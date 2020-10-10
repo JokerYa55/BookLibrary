@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -17,10 +19,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 @Slf4j
 public class PageController {
-
+    
     @Autowired
     CategoryService categoryService;
-
+    
     @Autowired
     BookService bookService;
 
@@ -62,6 +64,39 @@ public class PageController {
         return PagesType.TRASH_PAGE.toString();
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
+    @GetMapping(path = "/registration", produces = "text/html")
+    public String registration(Model model) {
+        log.info(PagesType.REGISTRATION_PAGE.toString());
+        return PagesType.REGISTRATION_PAGE.toString();
+    }
+    
+    @PostMapping(path = "/registration", produces = "text/html")
+    public String registrationPost(Model model, @RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("passwordConfirm") String passwordConfirm) {
+        log.info(PagesType.REGISTRATION_PAGE.toString());
+        log.info("username = {} password = {} passwordConfirm = {}", username, password, passwordConfirm);
+        return PagesType.REGISTRATION_PAGE.toString();
+    }
+
+    /**
+     *
+     * @param model
+     * @return
+     */
+    @GetMapping(path = "/login", produces = "text/html")
+    public String login(Model model) {
+        log.info(PagesType.LOGIN_PAGE.toString());
+        return PagesType.LOGIN_PAGE.toString();
+    }
+
+    /**
+     *
+     * @return
+     */
     @ModelAttribute("title")
     public String titleMessage() {
         return "Библиотека";

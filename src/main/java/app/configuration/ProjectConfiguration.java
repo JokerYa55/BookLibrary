@@ -3,7 +3,7 @@ package app.configuration;
 import app.model.Author;
 import app.model.Book;
 import app.model.Category;
-import app.model.Users;
+import app.model.User;
 import app.repository.AuthorRepository;
 import app.repository.BooksRepository;
 import app.repository.CategoryRepository;
@@ -95,7 +95,7 @@ public class ProjectConfiguration {
         category.setName("test");
         categoryRepository.saveAll(categoryList);
         // Генерация пользователя
-        List<Users> userList = Arrays.asList(new Users("admin", "Администратор", "123"), new Users("user_1", "Иванов Иван", "123"), new Users("user_2", "Петров Петр", "123"));
+        List<User> userList = Arrays.asList(new User("admin", "Администратор", "123"), new User("user_1", "Иванов Иван", "123"), new User("user_2", "Петров Петр", "123"));
         userRepository.saveAll(userList);
         // Генерация книг
         List<Book> booksList = Arrays.asList(new Book("День триффидов", "978-5-17-095526-8", images.get(0), 1L, authorList.get(2)),

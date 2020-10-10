@@ -5,8 +5,10 @@ package app.controllers;
  * @author vasil
  */
 public enum PagesType {
+    LOGIN_PAGE("login"),
     INDEX_PAGE("index"),
-    TRASH_PAGE("trash");
+    TRASH_PAGE("trash"),
+    REGISTRATION_PAGE("registration");
     
     private final String name;
 
