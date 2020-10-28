@@ -43,6 +43,7 @@ public class User implements UserDetails {
         this.username = username;
         this.fio = fio;
         this.password = passwordHash;
+        this.enabled = true;
     }
 
     @Override

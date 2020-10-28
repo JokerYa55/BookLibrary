@@ -1,7 +1,9 @@
 package app.controllers;
 
+import app.model.User;
 import app.service.BookService;
 import app.service.CategoryService;
+import app.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,9 @@ public class PageController {
     @Autowired
     BookService bookService;
 
+    @Autowired
+    UserService userService;
+    
     /**
      *
      * @param model
@@ -79,7 +84,10 @@ public class PageController {
     public String registrationPost(Model model, @RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("passwordConfirm") String passwordConfirm) {
         log.info(PagesType.REGISTRATION_PAGE.toString());
         log.info("username = {} password = {} passwordConfirm = {}", username, password, passwordConfirm);
-        return PagesType.REGISTRATION_PAGE.toString();
+        User user = new User(username, "test", password);
+        user = userService.saveUser(user);
+        model.addAttribute("user", user);
+        return PagesType.REGISTRATION_OK_PAGE.toString();
     }
 
     /**

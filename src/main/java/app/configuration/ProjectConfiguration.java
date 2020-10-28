@@ -3,10 +3,12 @@ package app.configuration;
 import app.model.Author;
 import app.model.Book;
 import app.model.Category;
+import app.model.Role;
 import app.model.User;
 import app.repository.AuthorRepository;
 import app.repository.BooksRepository;
 import app.repository.CategoryRepository;
+import app.repository.RoleRepository;
 import app.repository.UserRepository;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -40,6 +42,9 @@ public class ProjectConfiguration {
 
     @Autowired
     AuthorRepository authorRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
 
     /**
      *
@@ -118,6 +123,9 @@ public class ProjectConfiguration {
                 new Book("Поднимая планку. Как работать эффективнее, мыслить масштабнее и успевать больше", "978-5-91657-962-8", images.get(17), 4L, authorList.get(13)),
                 new Book("Тьерри Анри: одинокий на вершине", "978-5-04-088808-5", images.get(18), 5L, authorList.get(14)));
         booksRepository.saveAll(booksList);
+
+        List<Role> roleList = Arrays.asList(new Role(1L, "ADMIN"), new Role(2L, "USER"));
+        roleRepository.saveAll(roleList);
 
     }
 }
