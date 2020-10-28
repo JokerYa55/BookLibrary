@@ -1,9 +1,13 @@
 package app.controllers;
 
 import app.model.User;
+import app.repository.RoleRepository;
 import app.service.BookService;
 import app.service.CategoryService;
+import app.service.RoleService;
 import app.service.UserService;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,10 +31,13 @@ public class PageController {
     
     @Autowired
     BookService bookService;
-
+    
     @Autowired
     UserService userService;
     
+    @Autowired
+    RoleService roleService;
+
     /**
      *
      * @param model
@@ -85,6 +92,7 @@ public class PageController {
         log.info(PagesType.REGISTRATION_PAGE.toString());
         log.info("username = {} password = {} passwordConfirm = {}", username, password, passwordConfirm);
         User user = new User(username, "test", password);
+        user.setRoles(Stream.of(roleService.getRoleById(1L)).collect(Collectors.toSet()));
         user = userService.saveUser(user);
         model.addAttribute("user", user);
         return PagesType.REGISTRATION_OK_PAGE.toString();
